@@ -47,11 +47,8 @@ conn.sync({ force: false }).then(() => {
       })
       // console.log("////////////////////MAPEO/////////////////////////", countriesMap[0]);
       /*.bulkCreate recibe un array de paises para crearlos en la DB,
-      await espera a completar el registro
-      .findAll busca  y se le asigna el resultado a database */
+      await espera a completar el registro*/
       await Country.bulkCreate(countriesMap);
-      //const database = await Country.findAll();
-      // console.log("///////////ASIGNACION///////////", database);
     }
     console.log('%s listening at 3001'); // eslint-disable-line no-console
   });

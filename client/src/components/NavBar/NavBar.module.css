@@ -1,0 +1,12 @@
+.NavContainer {
+    /* background-color: rgb(21, 60, 60); */
+    display: flex;
+    justify-content: space-around;
+    /* justify-content: space-between; */
+    /* align-items: center; */
+    border-radius: 15px;
+
+    margin-bottom: 150px;
+    border: 2px solid red;
+
+}
