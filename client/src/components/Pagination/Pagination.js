@@ -1,12 +1,13 @@
 import { useState } from "react";
 import styles from "./Pagination.module.css"
-import CardsContainer from "../CardsContainer/CardsContainer";
+import Card from "../Card/Card";
 
 
 
 const Pagination = ({ countries, currentPage, setCurrentPage }) => {
     // defindo un estado que me muestre solo 10 juegos por pagina
-    const [countriesPerPage] = useState(10);
+    //const [countriesPerPage] = useState(10);
+    const [countriesPerPage, setCountriesPerPage] = useState(10)
 
 
     // creo una constante que me va a guardar el ultimo indice del elemento, por ejempo si estoy en pagina 1 * 15 = 15, 215 = 30
@@ -41,8 +42,8 @@ const Pagination = ({ countries, currentPage, setCurrentPage }) => {
             </nav>
             {
 
-                currentCountries.map((countries, i) => {
-                    return <CardsConccrftainer
+                currentCountries?.map((countries, i) => {
+                    return <Card
 
                         imgflag={countries.imgflag}
                         name={countries.name}

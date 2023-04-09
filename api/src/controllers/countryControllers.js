@@ -7,7 +7,7 @@ const getCountries = (async () => {
         /*'include' para obtener inf sobre las actividades turísticas disponibles en cada país, 'attributes' se desea obtener solo el nombre de la actividad. 'through' se trabaja en tablas de muchos a muchos para indicar no traer inf. adicional a la solicitada*/
         include: {
             model: Activity,
-            attributes: ['name'],
+            attributes: ["name", "dificulty", "duration", "season"],
             through: { attributes: [] },
         }
     })
@@ -25,7 +25,7 @@ const getCountryByName = async (name) => {
     const countryName = await Country.findAll({
         where: { name: upperCaseName }, include: {
             model: Activity,
-            attributes: ['name'],
+            attributes: ["name", "dificulty", "duration", "season"],
             through: { attributes: [] },
         }
     });

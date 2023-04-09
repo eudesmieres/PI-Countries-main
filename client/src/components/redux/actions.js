@@ -1,4 +1,4 @@
-import { FILTER_CONTINENT, GET_ALL_COUNTRIES, ORDER_COUNTRY, ORDER_POPULATION, FILTER_COUNTRY, GET_ALL_ACTIVITIES } from "./actionType";
+import { FILTER_CONTINENT, GET_ALL_COUNTRIES, ORDER_COUNTRY, ORDER_POPULATION, FILTER_COUNTRY, GET_ALL_ACTIVITIES, FILTER_CREATED } from "./actionType";
 import axios from "axios";
 
 
@@ -25,11 +25,22 @@ export function getAllCountries() {
 }
 
 export function filterContinent(contin) {
+    // console.log(contin);
     return {
-        type: FILTER_CONTINENT, payload: contin
+        type: FILTER_CONTINENT,
+        payload: contin
 
     }
 }
+
+export function filterCreated(payload) {
+    //console.log(payload);
+    return {
+        type: FILTER_CREATED,
+        payload
+    }
+}
+
 
 export function orderCountry(ordCountry) {
     return {
@@ -38,6 +49,7 @@ export function orderCountry(ordCountry) {
 }
 
 export function orderPopulation(popu) {
+
     return {
         type: ORDER_POPULATION, payload: popu
     }

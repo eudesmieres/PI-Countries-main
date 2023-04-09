@@ -12,4 +12,4 @@ router.use('/countries', countryRouter);
 router.use('/activities', activitiesRouter);
 //Estas rutas vienen de app.js y van a routes
 
-module.exports = rout;
+module.exports = router;
