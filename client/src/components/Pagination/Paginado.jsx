@@ -1,25 +1,30 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { pagNum } from "../redux/actions";
 
-const Paginado = ({ countries, countriesPerPage,paginado }) => {
+
+const Paginado = ({ countries, countriesPerPage}) => {
+    const dispatch = useDispatch();
     const pageNumbers = []
 
-    for ( let i=0; i<=Math.ceil(countries /countriesPerPage); i++){
+    for ( let i=1; i<=Math.ceil(countries /countriesPerPage); i++){
         pageNumbers.push(i)
     }
 
     return (
         <nav>
-            <ul className="paginado">
+            <div className="paginado">
                 { pageNumbers && 
                 pageNumbers.map(number => ( 
-                <li className="number" key={number}>
-                    <button onClick={() => (paginado(number + 1))} >
-                                {number + 1}
+                
+                    <button 
+                    className="number" key={number}
+                    type="button" 
+                    onClick={() => dispatch (pagNum(number))} >
+                                {number}
                             </button>
-                    {/* <a onClick={() => paginate(number)}>{number}</a> */}
-                </li>
                 ))}
-            </ul>
+            </div>
         </nav>
     )
     

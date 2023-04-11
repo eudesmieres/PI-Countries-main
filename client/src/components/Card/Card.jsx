@@ -1,4 +1,4 @@
-import CardsContainer from "../CardsContainer/CardsContainer";
+
 import style from "./Card.module.css";
 
 const Cards = (props) => {

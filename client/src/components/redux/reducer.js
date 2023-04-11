@@ -1,14 +1,16 @@
-import { GET_ALL_COUNTRIES, FILTER_CONTINENT, ORDER_COUNTRY, ORDER_POPULATION, FILTER_COUNTRY, GET_ALL_ACTIVITIES, FILTER_CREATED } from "./actionType";
+import { GET_ALL_COUNTRIES, FILTER_CONTINENT, ORDER_COUNTRY, ORDER_POPULATION, FILTER_COUNTRY, GET_ALL_ACTIVITIES, FILTER_CREATED, FILTER_PAG, POST_CREATED, FILTER_ID } from "./actionType";
 
 const initialState = {
     countries: [],
     allCountries: [],
     allActivities: [],
-    filterSeason: "season",
+    filteredCountries: [],
+    activities: [],
+    lettersId: [],
+    pag: 1,
 
     // filterCountry: [],
     // countryWname: [],
-    activities: []
 };
 
 
@@ -21,6 +23,8 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 countries: action.payload,
                 allCountries: action.payload,
+                lettersId: action.payload,
+
 
             }
 
@@ -28,10 +32,11 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 allActivities: action.payload,
+                activities: action.payload,
             }
         case FILTER_CONTINENT:
             const allCountries = state.allCountries
-            const continentfilter = action.payload === "ALL" ? allCountries : allCountries.filter(cont => cont.continent === action.payload)
+            const continentfilter = action.payload === "" ? allCountries : allCountries.filter(cont => cont.continent === action.payload)
             console.log(continentfilter);
             return {
                 ...state,
@@ -39,8 +44,8 @@ const rootReducer = (state = initialState, action) => {
 
             }
         case FILTER_CREATED:
-            const allActivities = state.allActivities;
-            const filteredActivities = action.payload === "season" ? allActivities : allActivities.filter(activity => activity.season === action.payload)
+            const activities = state.activities
+            const filteredActivities = action.payload === "" ? activities : activities.filter(activity => activity.season === action.payload)
             console.log(filteredActivities) // imprime las actividades filtradas por temporada
             return {
                 ...state,
@@ -83,13 +88,26 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 countries: sortedPopArr
             }
-
-
-        // case ORDER_POPULATION:
+        // case FILTER_COUNTRY:
         //     return {
         //         ...state,
-        //         filterCountry: action.payload
+        //         countries: action.payload
         //     }
+
+
+
+        case FILTER_COUNTRY:
+            const filteredCountries = state.countries.filter((country) =>
+                country.name.toLowerCase().includes(action.payload.toLowerCase())
+            );
+            console.log(filteredCountries);
+            return {
+                ...state,
+                countries: filteredCountries
+            };
+
+
+
         // case FILTER_COUNTRY:
         //     state.filterCountry = action.payload
         //     return {
@@ -103,6 +121,26 @@ const rootReducer = (state = initialState, action) => {
         //         activities: action.payload
 
         //     }
+
+        case FILTER_PAG:
+            return {
+                ...state,
+                pag: action.payload
+            }
+
+        case FILTER_ID:
+            return {
+                ...state,
+                lettersId: action.payload
+            }
+
+        case POST_CREATED:
+            return {
+                ...state,
+            }
+
+
+
         default:
             return { ...state }
     }
