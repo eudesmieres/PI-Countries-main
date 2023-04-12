@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 const { Country, Activity } = require('../db');
 
 const getCountries = (async () => {
@@ -11,7 +12,6 @@ const getCountries = (async () => {
             through: { attributes: [] },
         }
     })
-    //console.log("BddCountry", BddCountry[0])
     return BddCountry;
 });
 
@@ -23,13 +23,12 @@ const getCountryByName = async (name) => {
     const upperCaseName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
 
     const countryName = await Country.findAll({
-        where: { name: upperCaseName }, include: {
+        where: { name: { [Op.substring]: `%${upperCaseName}%` } }, include: {
             model: Activity,
             attributes: ["name", "dificulty", "duration", "season"],
             through: { attributes: [] },
         }
     });
-    // console.log("Estas country by name ", countryName)
     return countryName;
 }
 

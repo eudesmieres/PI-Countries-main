@@ -23,6 +23,7 @@ server.use((req, res, next) => {
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
   next();
 });
+// RUTA http://localhost:3000/
 //ruta a index.js/routes
 server.use('/', routes);
 

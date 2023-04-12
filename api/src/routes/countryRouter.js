@@ -3,6 +3,7 @@ const { getCountryHandlers, getCountryIdHandlers } = require('../handlers/countr
 
 const countryRouter = Router();
 
+// RUTA http://localhost:3000/countries/
 //vienen de index.js/routes y van a handlers
 countryRouter.get('/', getCountryHandlers);
 

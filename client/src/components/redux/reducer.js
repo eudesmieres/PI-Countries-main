@@ -1,4 +1,8 @@
-import { GET_ALL_COUNTRIES, FILTER_CONTINENT, ORDER_COUNTRY, ORDER_POPULATION, FILTER_COUNTRY, GET_ALL_ACTIVITIES, FILTER_CREATED, FILTER_PAG, POST_CREATED, FILTER_ID } from "./actionType";
+import {
+    GET_ALL_COUNTRIES, FILTER_CONTINENT, ORDER_COUNTRY,
+    ORDER_POPULATION, FILTER_COUNTRY, GET_ALL_ACTIVITIES,
+    FILTER_CREATED, FILTER_PAG, POST_CREATED, GET_DETAILS
+} from "./actionType";
 
 const initialState = {
     countries: [],
@@ -7,10 +11,8 @@ const initialState = {
     filteredCountries: [],
     activities: [],
     lettersId: [],
+    detail: [],
     pag: 1,
-
-    // filterCountry: [],
-    // countryWname: [],
 };
 
 
@@ -44,13 +46,13 @@ const rootReducer = (state = initialState, action) => {
 
             }
         case FILTER_CREATED:
-            const activities = state.activities
-            const filteredActivities = action.payload === "" ? activities : activities.filter(activity => activity.season === action.payload)
+            const activities = state.allCountries
+            const filteredActivities = action.payload === "" ? activities : activities.filter(activity => activity.activities.find(filterseason => filterseason.season === action.payload))
             console.log(filteredActivities) // imprime las actividades filtradas por temporada
             return {
                 ...state,
 
-                allActivities: filteredActivities
+                countries: filteredActivities
             };
 
         case ORDER_COUNTRY:
@@ -88,39 +90,12 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 countries: sortedPopArr
             }
-        // case FILTER_COUNTRY:
-        //     return {
-        //         ...state,
-        //         countries: action.payload
-        //     }
-
-
 
         case FILTER_COUNTRY:
-            const filteredCountries = state.countries.filter((country) =>
-                country.name.toLowerCase().includes(action.payload.toLowerCase())
-            );
-            console.log(filteredCountries);
             return {
                 ...state,
-                countries: filteredCountries
-            };
-
-
-
-        // case FILTER_COUNTRY:
-        //     state.filterCountry = action.payload
-        //     return {
-        //         ...state,
-        //         countryWname: action.payload
-        //     }
-        // case GET_ALL_ACTIVITIES:
-        //     // console.log("/////////////////ACTION\\\\\\\\\\\\", action.payload);
-        //     return {
-        //         ...state,
-        //         activities: action.payload
-
-        //     }
+                countries: action.payload
+            }
 
         case FILTER_PAG:
             return {
@@ -128,15 +103,15 @@ const rootReducer = (state = initialState, action) => {
                 pag: action.payload
             }
 
-        case FILTER_ID:
-            return {
-                ...state,
-                lettersId: action.payload
-            }
-
         case POST_CREATED:
             return {
                 ...state,
+            }
+
+        case GET_DETAILS:
+            return {
+                ...state,
+                detail: action.payload
             }
 
 

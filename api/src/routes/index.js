@@ -6,6 +6,8 @@ const activitiesRouter = require('../routes/activitiesRouter');
 
 const router = Router();
 
+// RUTA http://localhost:3000/countries
+// RUTA http://localhost:3000/activities
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 router.use('/countries', countryRouter);

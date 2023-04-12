@@ -6,5 +6,5 @@ export const ORDER_COUNTRY = "ORDER_COUNTRY";
 export const ORDER_POPULATION = "ORDER_POPULATION";
 export const FILTER_COUNTRY = "FILTER_COUNTRY";
 export const FILTER_PAG = "FILTER_PAG";
-export const FILTER_ID = "FILTER_ID";
 export const POST_CREATED = "POST_CREATED";
+export const GET_DETAILS = "GET_DETAILS";

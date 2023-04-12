@@ -3,7 +3,8 @@ const { getCountries, getCountryByName, countryControllers } = require('../contr
 
 //Viene de Handlers y va a Controllers
 const getCountryHandlers = async (req, res) => {
-    //asi se busca la Query /countries?name=venezuela
+    // RUTA http://localhost:3000/countries?name=venezuela
+    //asi se busca la Query "?name=venezuela"
     const { name } = req.query;
     if (!name) {
         try {
@@ -26,6 +27,7 @@ const getCountryHandlers = async (req, res) => {
 
 
 const getCountryIdHandlers = async (req, res) => {
+    // RUTA http://localhost:3001/countries/${id}
     const { id } = req.params;
     try {
         const countId = await countryControllers(id);

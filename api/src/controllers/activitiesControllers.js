@@ -12,7 +12,7 @@ const createActivity = async (name, dificulty, duration, season, countries) => {
     return newActivity;
 };
 
-
+// Todas las actividades
 const getAllActivitiesControllers = async () => {
     const activities = await Activity.findAll();
     return activities;

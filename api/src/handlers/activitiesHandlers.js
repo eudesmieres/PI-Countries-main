@@ -4,9 +4,11 @@ const { createActivity, getAllActivitiesControllers } = require('../controllers/
 const createActivitiesHandlers = async (req, res) => {
     //
     const { name, dificulty, duration, season, countries } = req.body;
+    console.log(name, dificulty, duration, season, countries);
     try {
         //Llama a la funcion del controllers "createActivity"    
         const newActivity = await createActivity(name, dificulty, duration, season, countries);
+
         res.status(200).json(newActivity);
     } catch (error) {
         res.status(400).json({ error: error.message });

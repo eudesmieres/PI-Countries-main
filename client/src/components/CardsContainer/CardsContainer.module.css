@@ -6,3 +6,12 @@
     flex-wrap: wrap;
     gap: 1em;
 }
+
+.separationCards {
+    display: grid;
+    margin: 0px auto;
+    max-width: 1000px;
+    gap: 25px;
+    justify-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}

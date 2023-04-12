@@ -10,11 +10,11 @@ function App() {
       {location.pathname !== "/" && <NavBar />}
       <Route exact path="/" component={Landing} />
 
-      <Route exact path="/home" render={() => <Home />} />
+      <Route exact path="/home" component={Home} />
 
-      <Route exact path="/create" render={() => <Form />} />
+      <Route exact path="/create" component={Form} />
 
-      <Route exact path="/detail" render={() => <Detail />} />
+      <Route exact path="/detail/:id" component={Detail} />
     </div>
   );
 }
