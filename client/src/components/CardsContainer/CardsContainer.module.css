@@ -15,3 +15,11 @@
     justify-items: center;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
+
+.countryCar {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}

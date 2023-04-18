@@ -1,16 +1,20 @@
-
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import style from "./Card.module.css";
 
+
 const Cards = (props) => {
+    const navigate = useHistory();
+    const nave = () =>{
+        navigate.push(`/detail/${props.id}`)
+    }
     return(
-        <div className={style.country}>
+        <div className={style.country}
+        onClick={nave}>
             
           <img className={style.image} src={props.imgflag} alt={props.name} />
-          <Link 
-          to={`/detail/${props.id}`}>
+          
           <h3>{props.name}</h3>
-          </Link> 
+        
                 <p>Oficial Name: {props.name}</p>
                 <p>Continent: {props.continent}</p>
                 <p>Poblacion: {props.population}</p>

@@ -8,3 +8,4 @@ export const FILTER_COUNTRY = "FILTER_COUNTRY";
 export const FILTER_PAG = "FILTER_PAG";
 export const POST_CREATED = "POST_CREATED";
 export const GET_DETAILS = "GET_DETAILS";
+export const FILTERS = "FILTERS";

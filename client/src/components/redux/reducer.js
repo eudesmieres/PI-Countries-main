@@ -1,7 +1,6 @@
 import {
-    GET_ALL_COUNTRIES, FILTER_CONTINENT, ORDER_COUNTRY,
-    ORDER_POPULATION, FILTER_COUNTRY, GET_ALL_ACTIVITIES,
-    FILTER_CREATED, FILTER_PAG, POST_CREATED, GET_DETAILS
+    GET_ALL_COUNTRIES, FILTER_COUNTRY, GET_ALL_ACTIVITIES, FILTER_PAG,
+    POST_CREATED, GET_DETAILS, FILTERS
 } from "./actionType";
 
 const initialState = {
@@ -23,6 +22,7 @@ const rootReducer = (state = initialState, action) => {
         case GET_ALL_COUNTRIES:
             return {
                 ...state,
+                pag: 1,
                 countries: action.payload,
                 allCountries: action.payload,
                 lettersId: action.payload,
@@ -35,60 +35,6 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 allActivities: action.payload,
                 activities: action.payload,
-            }
-        case FILTER_CONTINENT:
-            const allCountries = state.allCountries
-            const continentfilter = action.payload === "" ? allCountries : allCountries.filter(cont => cont.continent === action.payload)
-            console.log(continentfilter);
-            return {
-                ...state,
-                countries: continentfilter
-
-            }
-        case FILTER_CREATED:
-            const activities = state.allCountries
-            const filteredActivities = action.payload === "" ? activities : activities.filter(activity => activity.activities.find(filterseason => filterseason.season === action.payload))
-            console.log(filteredActivities) // imprime las actividades filtradas por temporada
-            return {
-                ...state,
-
-                countries: filteredActivities
-            };
-
-        case ORDER_COUNTRY:
-            let sortedArr = action.payload === "ascending" ? state.countries.sort(function (a, b) {
-                if (a.name > b.name) {
-                    return 1;
-                }
-                if (b.name > a.name) {
-                    return -1;
-                }
-                return 0;
-            }) :
-                state.countries.sort(function (a, b) {
-                    if (a.name > b.name) {
-                        return -1;
-                    }
-                    if (b.name > a.name) {
-                        return 1;
-                    }
-                    return 0;
-                })
-            return {
-                ...state,
-                countries: sortedArr
-            }
-
-        case ORDER_POPULATION:
-            let sortedPopArr = action.payload === "minPoblation" ? state.countries.sort(function (a, b) {
-                return a.population - b.population;
-            }) :
-                state.countries.sort(function (a, b) {
-                    return b.population - a.population;
-                });
-            return {
-                ...state,
-                countries: sortedPopArr
             }
 
         case FILTER_COUNTRY:
@@ -106,12 +52,21 @@ const rootReducer = (state = initialState, action) => {
         case POST_CREATED:
             return {
                 ...state,
+                pag: 1,
             }
 
         case GET_DETAILS:
             return {
                 ...state,
+                pag: 1,
                 detail: action.payload
+            }
+        case FILTERS:
+            console.log(state.countries);
+            return {
+                ...state,
+                pag: 1,
+                countries: action.payload,
             }
 
 

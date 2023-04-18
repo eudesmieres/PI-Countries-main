@@ -1,12 +1,23 @@
 .country {
-    background-color: antiquewhite;
-    border: 1px solid black;
+    background: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url("../../Imagen/card.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+  border-radius: 20px;
 
+
+
+    border: 2px solid #07ff07;
+    box-shadow: 2px 2px 15px #000000 inset;
+    font-family:monospace;
+    margin-top: 30px;
     margin-left: 150px;
-    width: 300px;
-    height: 370px;
-    border-radius: 10px;
+    width: 400px;
+    height: 570px;
+    
     justify-items: center;
+    color: white;
+    font-size: 25px;
 
 }
 
@@ -15,7 +26,31 @@
     width: 150px;
     height: 150px;
     background-size: cover;
+    border:solid 2px #07ff07;
+    box-shadow: 2px 2px 15px #000000 inset;
+    border-radius: 50%
+
     /*Ajusta la imagen al contenedor*/
     /* border-radius: 50%; */
     /*Da la apariencia redonda*/
 }
+
+/* .card {
+    width: 190px;
+    height: 254px;
+    background: transparent;
+    border: 2px solid #07ff07;
+    box-shadow: 2px 2px 15px #000000 inset;
+    text-align: center;
+    color: #e8e8e8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Pacifico';
+  } */
+  
+  .country:hover {
+    color: #07ff07;
+    box-shadow: 2px 2px 15px #07ff07 inset;
+  }
+  

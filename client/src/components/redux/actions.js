@@ -1,7 +1,6 @@
 import {
-    FILTER_CONTINENT, GET_ALL_COUNTRIES, ORDER_COUNTRY,
-    ORDER_POPULATION, FILTER_COUNTRY, GET_ALL_ACTIVITIES,
-    FILTER_CREATED, FILTER_PAG, GET_DETAILS
+    GET_ALL_ACTIVITIES, GET_ALL_COUNTRIES,
+    FILTER_COUNTRY, FILTER_PAG, GET_DETAILS, FILTERS
 } from "./actionType";
 import axios from "axios";
 
@@ -29,37 +28,6 @@ export function getAllCountries() {
 }
 
 
-export function filterContinent(contin) {
-    // console.log(contin);
-    return {
-        type: FILTER_CONTINENT,
-        payload: contin
-
-    }
-}
-
-export function filterCreated(payload) {
-    console.log(payload);
-    return {
-        type: FILTER_CREATED,
-        payload
-    }
-}
-
-
-export function orderCountry(ordCountry) {
-    return {
-        type: ORDER_COUNTRY, payload: ordCountry
-    }
-}
-
-export function orderPopulation(popu) {
-
-    return {
-        type: ORDER_POPULATION, payload: popu
-    }
-}
-
 export const filterCountryByName = (name) => {
     return async (dispatch) => {
         try {
@@ -80,19 +48,44 @@ export const pagNum = (number) => {
     }
 };
 
-export function postActivities(payload) {
-    return async (dispatch) => {
-        const response = await axios.post("http://localhost:3001/activities", payload);
-        console.log(response);
-        return response;
+// export const postActivities = (payload) => {
+//     return async (dispatch) => {
+//         try {
+//             const response = await axios.post("http://localhost:3001/activities", payload);
+//             console.log(response);
+//             dispatch({
+//                 type: FILTERS,
+//                 payload: response.data
+//             });
+//             return response
+
+//         } catch (error) {
+//             console.log("Error, Actividad no creada", error);
+//         }
+//         //return response;
+//     }
+// };
+
+export const postActivities = (activity) => {
+    return async function () {
+        try {
+            const newAct = await axios.post("http://localhost:3001/activities",
+                activity
+            ); console.log(newAct);
+            return newAct
+        } catch (error) {
+            console.log("Error, Actividad no creada", error);
+        }
     }
-};
+}
+
+
 
 export const getDetail = (id) => {
     return async (dispatch) => {
         try {
             const json = await axios.get(`http://localhost:3001/countries/${id}`);
-            // console.log(json.data);
+            console.log(json.data);
             dispatch({
                 type: GET_DETAILS,
                 payload: json.data
@@ -102,3 +95,12 @@ export const getDetail = (id) => {
         }
     };
 };
+
+export const filtersCountry = (countries) => {
+    return async (dispatch) => {
+        dispatch({
+            type: FILTERS,
+            payload: countries
+        });
+    }
+}
